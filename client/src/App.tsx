@@ -7,7 +7,7 @@ export default function App() {
         <>
             <img src={logo} className="App-logo" alt="logo" />
             <div className="wrapper">
-                <h1>Hello from<br />ReactTS</h1>
+                <h1>Hello from<br />Reactix</h1>
                 <p>React (SSR) project powered by actix backend and graphql</p>
                 <Counter />
             </div>

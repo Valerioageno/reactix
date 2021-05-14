@@ -1,4 +1,4 @@
-use server::run::run;
+use reactix::run::run;
 use std::net::TcpListener;
 
 #[actix_web::main]

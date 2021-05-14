@@ -8,9 +8,9 @@ use std::net::TcpListener;
 pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
     let server = HttpServer::new(move || 
         App::new()
-            .service(fs::Files::new("/styles", "../dist/styles/").show_files_listing())
-            .service(fs::Files::new("/images", "../dist/images/").show_files_listing())
-            .service(fs::Files::new("/scripts", "../dist/scripts/").show_files_listing())
+            .service(fs::Files::new("/styles", "./dist/styles/").show_files_listing())
+            .service(fs::Files::new("/images", "./dist/images/").show_files_listing())
+            .service(fs::Files::new("/scripts", "./dist/scripts/").show_files_listing())
             .route("/", web::get().to(index))
         )
         .listen(listener)?
@@ -19,7 +19,7 @@ pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
 }
 
 async fn index() -> HttpResponse {
-    let source = read_to_string("../dist/index.js").expect("File not found");
+    let source = read_to_string("./dist/index.js").expect("File not found");
 
     let body = once(ok::<_, Error>(web::Bytes::from(Ssr::render_to_string(
         &source, "SSR", None,
