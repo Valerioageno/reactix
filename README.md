@@ -8,12 +8,14 @@ Starter project using react, rust and graphql
 
 - [x] ReactJS typescript.
 - [x] Server side rendering
+- [x] Actix backend
 
 ## Coming soon
 
 - [ ] GraphQL
 - [ ] Testing the app
 - [ ] CI pipeline
+- [ ] Client side Routing
 
 ## Contributing
 
