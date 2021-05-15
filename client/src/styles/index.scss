@@ -39,7 +39,7 @@ p{
   }
 }
 
-.counter{
+.link, .counter{
   font-size: 20px;
   padding: 15px 25px;
   background-color: black;
@@ -50,4 +50,17 @@ p{
   border: none;
   outline: none;
   cursor: pointer;
+  text-decoration: none;
 }
+
+.link{
+  border: 1px black solid;
+  transition: .3s;
+}
+
+.linkHovered{
+  background-color: white;
+  color: black;
+  transition: .3s;
+}
+

@@ -1,6 +1,7 @@
 import './styles/index.scss'
 import logo from './logo.svg'
 import Counter from './components/Counter'
+import Link from './components/Link'
 
 export default function App() {
     return(
@@ -10,6 +11,9 @@ export default function App() {
                 <h1>Hello from<br />Reactix</h1>
                 <p>React (SSR) project powered by actix backend and graphql</p>
                 <Counter />
+                <Link 
+                    link="https://github.com/Valerioageno/reactix"
+                >Repo</Link>
             </div>
         </>
     )
