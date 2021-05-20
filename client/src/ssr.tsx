@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server'
 import App from './App'
 
 export const Index = () => {
-    return (`
+   return `
         <!doctype html>
         <html lang="en">
         <head>
@@ -20,5 +20,5 @@ export const Index = () => {
             <script src="./scripts/bundle.js"></script>
         </body>
         </html>
-    `); 
-};
+    `
+}

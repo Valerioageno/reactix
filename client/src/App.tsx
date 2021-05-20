@@ -4,17 +4,19 @@ import Counter from './components/Counter'
 import Link from './components/Link'
 
 export default function App() {
-    return(
-        <>
-            <img src={logo} className="App-logo" alt="logo" />
-            <div className="wrapper">
-                <h1>Hello from<br />Reactix</h1>
-                <p>React (SSR) project powered by actix backend and graphql</p>
-                <Counter />
-                <Link 
-                    link="https://github.com/Valerioageno/reactix"
-                >Repo</Link>
-            </div>
-        </>
-    )
+   return (
+      <>
+         <img src={logo} className='App-logo' alt='logo' />
+         <div className='wrapper'>
+            <h1>
+               Hello from
+               <br />
+               Reactix
+            </h1>
+            <p>React (SSR) project powered by actix backend and graphql</p>
+            <Counter />
+            <Link link='https://github.com/Valerioageno/reactix'>Repo</Link>
+         </div>
+      </>
+   )
 }
