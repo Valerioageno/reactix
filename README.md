@@ -1,8 +1,34 @@
-# Reactix
+<div>
+  <h1 align="center">Reactix</h1>
+  <p align="center">🦾 React, Typescript, Rust and GraphQL 🦾</p>
+</div>
 
-Starter project using react, rust and graphql
+<br>
+
+[![Valerioageno](https://circleci.com/gh/Valerioageno/reactix.svg?style=svg)](https://github.com/Valerioageno/reactix)
+
+<br>
 
 <img src="./preview.gif" width="100%">
+
+<br>
+<br>
+
+## Frontend dev mode
+
+```bash
+> cd client/
+> npm i && npm run start
+```
+
+## Build and run
+
+```bash
+> cd client/
+> npm i && npm run build
+> cd ..
+> cargo run
+```
 
 ## Features
 
@@ -13,8 +39,6 @@ Starter project using react, rust and graphql
 ## Coming soon
 
 - [ ] GraphQL
-- [ ] Testing the app
-- [ ] CI pipeline
 - [ ] Client side Routing
 
 ## Contributing

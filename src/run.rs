@@ -1,20 +1,21 @@
-use actix_files as fs;
-use actix_web::{dev::Server, http::StatusCode, web, App, Error, HttpResponse, HttpServer};
+use actix_files::Files;
+use actix_web::{dev::Server, http::StatusCode, web, App, Error, HttpResponse, HttpServer, Responder};
 use futures::{future::ok, stream::once};
 use ssr_rs::Ssr;
 use std::fs::read_to_string;
 use std::net::TcpListener;
 
 pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
-    let server = HttpServer::new(move || 
+    let server = HttpServer::new(move || {
         App::new()
-            .service(fs::Files::new("/styles", "./dist/styles/").show_files_listing())
-            .service(fs::Files::new("/images", "./dist/images/").show_files_listing())
-            .service(fs::Files::new("/scripts", "./dist/scripts/").show_files_listing())
+            .service(Files::new("/styles", "./dist/styles/").show_files_listing())
+            .service(Files::new("/images", "./dist/images/").show_files_listing())
+            .service(Files::new("/scripts", "./dist/scripts/").show_files_listing())
+            .route("/health_check", web::get().to(health_check))
             .route("/", web::get().to(index))
-        )
-        .listen(listener)?
-        .run();
+    })
+    .listen(listener)?
+    .run();
     Ok(server)
 }
 
@@ -28,4 +29,9 @@ async fn index() -> HttpResponse {
     HttpResponse::build(StatusCode::OK)
         .content_type("text/html; charset=utf-8")
         .streaming(body)
+}
+
+
+async fn health_check() -> impl Responder {
+    HttpResponse::Ok().finish()
 }
