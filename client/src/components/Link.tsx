@@ -15,7 +15,7 @@ export default function Link(props: LinkProps): JSX.Element {
          onMouseEnter={() => setHovered(true)}
          onMouseLeave={() => setHovered(false)}
          href={props.link || '#'}
-         rel="noreferrer"
+         rel='noreferrer'
       >
          {props.children}
       </a>
