@@ -1,5 +1,7 @@
 use actix_files::Files;
-use actix_web::{dev::Server, http::StatusCode, web, App, Error, HttpResponse, HttpServer, Responder};
+use actix_web::{
+    dev::Server, http::StatusCode, web, App, Error, HttpResponse, HttpServer, Responder,
+};
 use futures::{future::ok, stream::once};
 use ssr_rs::Ssr;
 use std::fs::read_to_string;
@@ -30,7 +32,6 @@ async fn index() -> HttpResponse {
         .content_type("text/html; charset=utf-8")
         .streaming(body)
 }
-
 
 async fn health_check() -> impl Responder {
     HttpResponse::Ok().finish()
