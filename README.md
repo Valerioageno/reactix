@@ -3,7 +3,7 @@
   <p align="center">🦾 React, Typescript, Rust and GraphQL 🦾</p>
 </div>
 
-[![Valerioageno](https://circleci.com/gh/Valerioageno/reactix.svg?style=svg)](https://github.com/Valerioageno/reactix)
+![Main workflow](https://github.com/Valerioageno/reactix/actions/workflows/main.yml/badge.svg)
 
 <br>
 
