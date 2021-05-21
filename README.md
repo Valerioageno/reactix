@@ -3,15 +3,12 @@
   <p align="center">🦾 React, Typescript, Rust and GraphQL 🦾</p>
 </div>
 
-<br>
-
 [![Valerioageno](https://circleci.com/gh/Valerioageno/reactix.svg?style=svg)](https://github.com/Valerioageno/reactix)
 
 <br>
 
 <img src="./preview.gif" width="100%">
 
-<br>
 <br>
 
 ## Frontend dev mode
