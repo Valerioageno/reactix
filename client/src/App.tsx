@@ -1,9 +1,10 @@
+import React from 'react'
 import './styles/index.scss'
 import logo from './logo.svg'
 import Counter from './components/Counter'
 import Link from './components/Link'
 
-export default function App() {
+const App: React.FC = () => {
    return (
       <>
          <img src={logo} className='App-logo' alt='logo' />
@@ -20,3 +21,5 @@ export default function App() {
       </>
    )
 }
+
+export default App;

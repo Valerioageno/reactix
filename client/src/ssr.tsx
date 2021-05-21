@@ -2,7 +2,7 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import App from './App'
 
-export const Index = () => {
+export const Index = (): string => {
    return `
         <!doctype html>
         <html lang="en">

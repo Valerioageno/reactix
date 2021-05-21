@@ -6,7 +6,7 @@ interface LinkProps {
 }
 
 export default function Link(props: LinkProps): JSX.Element {
-   let [hovered, setHovered] = useState<boolean>(false)
+   const [hovered, setHovered] = useState<boolean>(false)
 
    return (
       <a
@@ -15,6 +15,7 @@ export default function Link(props: LinkProps): JSX.Element {
          onMouseEnter={() => setHovered(true)}
          onMouseLeave={() => setHovered(false)}
          href={props.link || '#'}
+         rel="noreferrer"
       >
          {props.children}
       </a>
