@@ -3,13 +3,13 @@
   <p align="center">🦾 React, Typescript, Rust and GraphQL 🦾</p>
 </div>
 
-![Main workflow](https://github.com/Valerioageno/reactix/actions/workflows/main.yml/badge.svg)
+![Backend](https://github.com/Valerioageno/reactix/actions/workflows/main.yml/badge.svg)
+![Frontend](https://github.com/Valerioageno/reactix/actions/workflows/client.yml/badge.svg)
 
 <br>
 
 <img src="./preview.gif" width="100%">
 
-<br>
 
 ## Frontend dev mode
 
