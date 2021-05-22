@@ -3,6 +3,17 @@ import { render, hydrate } from 'react-dom'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
 
+const props = (() => {
+   const stateHolder = window as { __INITIAL_PROPS__?: string }
+   const ssrState = stateHolder.__INITIAL_PROPS__
+
+   if (ssrState) {
+      delete stateHolder.__INITIAL_PROPS__
+      return JSON.parse(ssrState)
+   }
+   return {}
+})()
+
 if (process.env.NODE_ENV !== 'production') {
    render(
       <React.StrictMode>
@@ -15,7 +26,7 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
    hydrate(
       <BrowserRouter>
-         <App />
+         <App {...props} />
       </BrowserRouter>,
       document.getElementById('root')
    )

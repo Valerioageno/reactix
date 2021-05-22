@@ -1,6 +1,7 @@
 use actix_files::Files;
 use actix_web::{
-    dev::Server, http::StatusCode, web, App, Error, HttpResponse, HttpServer, Responder,
+    dev::Server, get, http::StatusCode, web, App, Error, HttpRequest, HttpResponse, HttpServer,
+    Responder,
 };
 use futures::{future::ok, stream::once};
 use ssr_rs::Ssr;
@@ -14,18 +15,29 @@ pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
             .service(Files::new("/images", "./dist/images/").show_files_listing())
             .service(Files::new("/scripts", "./dist/scripts/").show_files_listing())
             .route("/health_check", web::get().to(health_check))
-            .route("/", web::get().to(index))
+            .service(index)
     })
     .listen(listener)?
     .run();
     Ok(server)
 }
 
-async fn index() -> HttpResponse {
+#[get("*")]
+async fn index(req: HttpRequest) -> impl Responder {
+    let props = format!(
+        r##"{{
+        "location": "{}",
+        "context": {{}}
+    }}"##,
+        req.uri()
+    );
+
     let source = read_to_string("./dist/index.js").expect("File not found");
 
     let body = once(ok::<_, Error>(web::Bytes::from(Ssr::render_to_string(
-        &source, "SSR", None,
+        &source,
+        "SSR",
+        Some(&props),
     ))));
 
     HttpResponse::build(StatusCode::OK)

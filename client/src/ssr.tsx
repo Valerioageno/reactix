@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderToString } from 'react-dom/server'
+import { renderToString, renderToStaticMarkup } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import App from './App'
 import { Helmet } from 'react-helmet'
@@ -21,6 +21,15 @@ export const Index = (params: string | undefined): string => {
             <link rel="stylesheet" href="./styles/ssr.css">
         </head>
         <body>
+            ${renderToStaticMarkup(
+               <script
+                  dangerouslySetInnerHTML={{
+                     __html: `window.__INITIAL_PROPS__ =${JSON.stringify(
+                        params
+                     ).replace(/</g, '\\u003c')}`,
+                  }}
+               />
+            )}
             <div id="root">
                 ${renderToString(
                    <StaticRouter {...props}>
