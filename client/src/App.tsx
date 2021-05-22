@@ -1,23 +1,41 @@
 import React from 'react'
+import { Switch, Route } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
+
 import './styles/index.scss'
 import logo from './logo.svg'
-import Counter from './components/Counter'
-import Link from './components/Link'
+import favicon from '../public/favicon.png'
+import Navbar from './components/Navbar'
+
+import Home from './pages/Home'
+import About from './pages/About'
+import Posts from './pages/Posts'
+import NotFound from './pages/404'
 
 const App: React.FC = () => {
    return (
       <>
+         <Helmet>
+            <meta charSet='utf-8' />
+            <title>Reactix</title>
+            <link rel='icon' type='image/png' href={favicon} />
+         </Helmet>
          <img src={logo} className='App-logo' alt='logo' />
-         <div className='wrapper'>
-            <h1>
-               Hello from
-               <br />
-               Reactix
-            </h1>
-            <p>React (SSR) project powered by actix backend and graphql</p>
-            <Counter />
-            <Link link='https://github.com/Valerioageno/reactix'>Repo</Link>
-         </div>
+         <Navbar />
+         <Switch>
+            <Route exact path='/'>
+               <Home />
+            </Route>
+            <Route path='/about'>
+               <About />
+            </Route>
+            <Route path='/posts'>
+               <Posts />
+            </Route>
+            <Route path='*'>
+               <NotFound />
+            </Route>
+         </Switch>
       </>
    )
 }

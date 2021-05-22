@@ -30,14 +30,14 @@
 
 ## Features
 
-- [x] ReactJS typescript.
+- [x] ReactJS typescript
 - [x] Server side rendering
 - [x] Actix backend
+- [x] Routing
 
 ## Coming soon
 
 - [ ] GraphQL
-- [ ] Client side Routing
 
 ## Contributing
 

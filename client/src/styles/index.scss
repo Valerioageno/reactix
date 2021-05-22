@@ -85,3 +85,25 @@ p {
    color: black;
    transition: 0.3s;
 }
+
+nav {
+   position: fixed;
+   height: 100px;
+   width: 100%;
+}
+
+nav ul {
+   display: flex;
+   list-style-type: none;
+   padding: 25px;
+   margin-top: 10px;
+}
+
+nav ul li {
+   margin-right: 25px;
+   font-size: 20px;
+}
+
+nav ul li a {
+   color: black;
+}

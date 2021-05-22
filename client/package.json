@@ -15,7 +15,9 @@
    "license": "MIT",
    "dependencies": {
       "react": "^17.0.2",
-      "react-dom": "^17.0.2"
+      "react-dom": "^17.0.2",
+      "react-helmet": "^6.1.0",
+      "react-router-dom": "^5.2.0"
    },
    "devDependencies": {
       "@babel/preset-env": "^7.14.2",
@@ -25,6 +27,8 @@
       "@types/node": "^15.3.1",
       "@types/react": "^17.0.5",
       "@types/react-dom": "^17.0.3",
+      "@types/react-helmet": "^6.1.1",
+      "@types/react-router-dom": "^5.1.7",
       "@types/react-test-renderer": "^17.0.1",
       "@typescript-eslint/eslint-plugin": "^4.24.0",
       "@typescript-eslint/parser": "^4.24.0",
