@@ -23,18 +23,10 @@ const App: React.FC = () => {
          <img src={logo} className='App-logo' alt='logo' />
          <Navbar />
          <Switch>
-            <Route exact path='/'>
-               <Home />
-            </Route>
-            <Route path='/about'>
-               <About />
-            </Route>
-            <Route path='/posts'>
-               <Posts />
-            </Route>
-            <Route path='*'>
-               <NotFound />
-            </Route>
+            <Route exact path='/' component={Home} />
+            <Route path='/about' component={About} />
+            <Route path='/posts' component={Posts} />
+            <Route path='*' component={NotFound} />
          </Switch>
       </>
    )
