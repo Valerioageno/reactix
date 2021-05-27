@@ -21,6 +21,7 @@ export const Index = (params: string | undefined): string => {
             <link rel="stylesheet" href="./styles/ssr.css">
         </head>
         <body>
+            <noscript>Your browser does not support JavaScript!</noscript>
             ${renderToStaticMarkup(
                <script
                   dangerouslySetInnerHTML={{
