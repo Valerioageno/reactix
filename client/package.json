@@ -6,10 +6,11 @@
    "scripts": {
       "start": "webpack serve --devtool inline-source-map --hot --config webpack.dev.js",
       "build": "npx webpack --config ./webpack.prod.js --progress",
+      "cy:open": "cypress open",
       "fmt": "prettier --write .",
       "fmt:check": "prettier --check .",
       "lint": "eslint src/ __tests__/",
-      "test": "jest"
+      "test": "cypress verify"
    },
    "author": "V. Ageno <valerioageno@yahoo.it>",
    "license": "MIT",
@@ -35,6 +36,7 @@
       "babel-jest": "^26.6.3",
       "clean-webpack-plugin": "*",
       "css-loader": "^5.2.4",
+      "cypress": "^7.4.0",
       "eslint": "^7.26.0",
       "eslint-config-prettier": "^8.3.0",
       "eslint-plugin-react": "^7.23.2",
@@ -55,6 +57,9 @@
       "webpack-dev-server": "^3.11.2"
    },
    "jest": {
-      "verbose": true
+      "verbose": true,
+      "moduleNameMapper": {
+         "\\.(css|scss|png|svg)$": "<rootDir>/__mocks__/styleMock.js"
+      }
    }
 }
