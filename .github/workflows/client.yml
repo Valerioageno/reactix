@@ -36,25 +36,25 @@ jobs:
     - name: Build project
       run: npm run build
       working-directory: ${{env.working-directory}}
-      
+
+  fmt-and-lint:
+    runs-on: ubuntu-20.04
+
+    steps:    
+    - uses: actions/checkout@v2
+    - name: CI Checkout
+      uses: actions/setup-node@v2
+      with:
+        node-version: 15.x
+        
+    - name: Install dependencies
+      run: npm install
+      working-directory: ./client
+
     - name: Check formatting
       run: npm run fmt:check
-      working-directory: ${{env.working-directory}}
+      working-directory: ./client
       
     - name: Lint
       run: npm run lint
-      working-directory: ${{env.working-directory}}
-
-  cypress-run:
-    runs-on: ubuntu-20.04
-    env:
       working-directory: ./client
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        working-directory: ${{env.working-directory}}
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        working-directory: ${{env.working-directory}}
-        with:
-          start: npm run start
