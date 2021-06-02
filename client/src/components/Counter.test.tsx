@@ -1,7 +1,7 @@
 import React from 'react'
 import { expect, test } from '@jest/globals'
-import Counter from './Counter'
 import '@testing-library/jest-dom/extend-expect'
+import Counter from './Counter'
 import { fireEvent, render, screen } from '@testing-library/react'
 
 test('render and update counter', () => {
