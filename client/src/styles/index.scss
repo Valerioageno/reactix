@@ -78,12 +78,12 @@ p {
 .link {
    border: 1px black solid;
    transition: 0.3s;
-}
 
-.linkHovered {
-   background-color: white;
-   color: black;
-   transition: 0.3s;
+   &:hover {
+      background-color: white;
+      color: black;
+      transition: 0.3s;
+   }
 }
 
 nav {

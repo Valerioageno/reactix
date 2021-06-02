@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 interface LinkProps {
    link: string
@@ -6,14 +6,10 @@ interface LinkProps {
 }
 
 export default function Link(props: LinkProps): JSX.Element {
-   const [hovered, setHovered] = useState<boolean>(false)
-
    return (
       <a
-         className={hovered ? 'link linkHovered' : 'link'} //Just for example testing purpose...
+         className='link'
          target='_blank'
-         onMouseEnter={() => setHovered(true)}
-         onMouseLeave={() => setHovered(false)}
          href={props.link || '#'}
          rel='noreferrer'
       >
