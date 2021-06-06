@@ -60,3 +60,7 @@ For example with <a href="https://render.com/">render.com</a> full documentation
 ## Contributing
 
 Any helps or suggestions will be appreciated.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for more information.
