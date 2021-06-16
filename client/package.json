@@ -5,7 +5,9 @@
    "main": "index.js",
    "scripts": {
       "start": "webpack serve --devtool inline-source-map --hot --config webpack.dev.js",
+      "start:server": "node dist/server/index.js",
       "build": "npx webpack --config ./webpack.prod.js --progress",
+      "build:server": "tsc -p tsconfig.json",
       "cy:open": "cypress open",
       "fmt": "prettier --write .",
       "fmt:check": "prettier --check .",
@@ -15,6 +17,7 @@
    "author": "V. Ageno <valerioageno@yahoo.it>",
    "license": "MIT",
    "dependencies": {
+      "express": "^4.17.1",
       "react": "^17.0.2",
       "react-dom": "^17.0.2",
       "react-helmet": "^6.1.0",
@@ -26,6 +29,7 @@
       "@babel/preset-typescript": "^7.13.0",
       "@testing-library/jest-dom": "^5.12.0",
       "@testing-library/react": "^11.2.7",
+      "@types/express": "^4.17.12",
       "@types/jest": "^26.0.23",
       "@types/node": "^15.3.1",
       "@types/react": "^17.0.5",
