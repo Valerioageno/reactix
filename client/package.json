@@ -4,10 +4,12 @@
    "description": "ReactJS client",
    "main": "index.js",
    "scripts": {
-      "start": "webpack serve --devtool inline-source-map --hot --config webpack.dev.js",
-      "start:server": "node dist/server/index.js",
-      "build": "npx webpack --config ./webpack.prod.js --progress",
-      "build:server": "tsc -p tsconfig.json",
+      "client:start": "webpack serve --devtool inline-source-map --hot --config webpack.dev.js",
+      "client:build:actix": "npx webpack --config ./webpack.prod.js --progress",
+      "client:build:express": "webpack --config webpack.client.build.js",
+      "server:build": "webpack --config webpack.server.build.js",
+      "server:production": "node dist/server/bundle.js",
+      "server:watch": "nodemon --watch './**/*.ts' --exec 'ts-node' server/index.ts",
       "cy:open": "cypress open",
       "fmt": "prettier --write .",
       "fmt:check": "prettier --check .",
@@ -31,7 +33,7 @@
       "@testing-library/react": "^11.2.7",
       "@types/express": "^4.17.12",
       "@types/jest": "^26.0.23",
-      "@types/node": "^15.3.1",
+      "@types/node": "^15.12.2",
       "@types/react": "^17.0.5",
       "@types/react-dom": "^17.0.3",
       "@types/react-helmet": "^6.1.1",
@@ -51,7 +53,9 @@
       "jest": "^26.6.3",
       "jest-extended": "^0.11.5",
       "mini-css-extract-plugin": "^1.6.0",
+      "nodemon": "^2.0.7",
       "prettier": "2.3.0",
+      "react-loadable": "^5.5.0",
       "react-test-renderer": "^17.0.2",
       "sass": "^1.32.12",
       "sass-loader": "^10.1.1",
@@ -61,6 +65,7 @@
       "typescript": "^4.2.4",
       "webpack": "^4.44.2",
       "webpack-cli": "^4.6.0",
-      "webpack-dev-server": "^3.11.2"
+      "webpack-dev-server": "^3.11.2",
+      "webpack-node-externals": "^3.0.0"
    }
 }

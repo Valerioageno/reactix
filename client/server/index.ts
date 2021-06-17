@@ -1,9 +1,17 @@
 import express from 'express'
+import template from './template'
 
 const server = express()
 
 server.get('*', (req, res) => {
-   res.send('Hello world')
+   res.status(200)
+   .type('html')
+   .send(
+      template({
+         location: req.url,
+         context: {},
+      })
+   )
 })
 
 server.listen(3000, () =>
