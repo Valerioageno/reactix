@@ -1,19 +1,21 @@
 import express from 'express'
-import template from './template'
+import htmlTemplate from './template'
 
-const server = express()
+const app = express()
 
-server.get('*', (req, res) => {
+app.use(express.static('dist/'))
+
+app.get('*', (req, res) => {
    res.status(200)
-   .type('html')
-   .send(
-      template({
-         location: req.url,
-         context: {},
-      })
-   )
+      .type('html')
+      .send(
+         htmlTemplate({
+            location: req.url,
+            context: {},
+         })
+      )
 })
 
-server.listen(3000, () =>
+app.listen(3000, () =>
    console.log('server listening at http://localhost:3000')
 )

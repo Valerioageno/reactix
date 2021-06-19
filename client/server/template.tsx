@@ -22,7 +22,7 @@ export default (props: TemplateProps): string => {
         <title>Reactix</title>
         ${helmetData.title.toString()}
         ${helmetData.meta.toString()}
-        <link rel="stylesheet" href="./styles/ssr.css">
+        <link rel="stylesheet" href="./styles/bundle.css">
     </head>
     <body>
         <noscript>Your browser does not support JavaScript!</noscript>
@@ -33,6 +33,7 @@ export default (props: TemplateProps): string => {
                </StaticRouter>
             )}
         </div>
+        <script src="./scripts/bundle.js"></script>
     </body>
     </html>
     `

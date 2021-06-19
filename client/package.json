@@ -8,7 +8,7 @@
       "client:build:actix": "npx webpack --config ./webpack.prod.js --progress",
       "client:build:express": "webpack --config webpack.client.build.js",
       "server:build": "webpack --config webpack.server.build.js",
-      "server:production": "node dist/server/bundle.js",
+      "server:production": "node dist/index.js",
       "server:watch": "nodemon --watch './**/*.ts' --exec 'ts-node' server/index.ts",
       "cy:open": "cypress open",
       "fmt": "prettier --write .",

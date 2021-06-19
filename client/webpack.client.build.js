@@ -4,15 +4,14 @@ const path = require('path')
 const { ReactLoadablePlugin } = require('react-loadable/webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const buildDirectory = 'dist'
-const outputDirectory = buildDirectory + '/client'
+const outputDirectory = 'dist/'
 
 module.exports = {
    mode: 'production',
    entry: './src/index.tsx',
    output: {
       path: path.join(__dirname, outputDirectory),
-      filename: 'bundle.js',
+      filename: 'scripts/bundle.js',
       publicPath: '/',
       chunkFilename: '[name].[chunkhash].js',
    },
@@ -47,13 +46,13 @@ module.exports = {
    },
    plugins: [
       new CleanWebpackPlugin({
-         cleanOnceBeforeBuildPatterns: [path.join(__dirname, buildDirectory)],
+         cleanOnceBeforeBuildPatterns: [path.join(__dirname, outputDirectory)],
       }),
       new ReactLoadablePlugin({
          filename: './dist/react-loadable.json',
       }),
       new MiniCssExtractPlugin({
-         filename: 'bundle.css',
+         filename: 'styles/bundle.css',
       }),
    ],
 }
