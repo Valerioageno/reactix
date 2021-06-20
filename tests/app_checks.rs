@@ -13,8 +13,6 @@ fn spawn_app() -> String {
 async fn health_check_works() {
     let address = spawn_app();
 
-    println!("address: {}", &address);
-
     let client = reqwest::Client::new();
 
     let response = client
@@ -25,4 +23,13 @@ async fn health_check_works() {
 
     assert!(response.status().is_success());
     assert_eq!(Some(0), response.content_length());
+}
+
+#[actix_rt::test]
+async fn html_starts_with_doctype() {
+    let address = spawn_app();
+
+    let content = reqwest::get(&address).await.unwrap().text().await.unwrap();
+
+    assert!(content.starts_with("<!doctype html>"))
 }
