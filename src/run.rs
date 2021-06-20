@@ -9,17 +9,20 @@ use std::fs::read_to_string;
 use std::net::TcpListener;
 use std::sync::Mutex;
 
-struct AppData {
-    js_source: String,
+struct AppState {
+    js_source: Mutex<String>, // <- Mutex is necessary to mutate safely across threads
 }
 
 pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
-    let _ = web::Data::new(Mutex::new(AppData {
-        js_source: read_to_string("./dist/index.js").expect("File not found"),
-    }));
-
     let server = HttpServer::new(move || {
+        let state = web::Data::new(AppState {
+            js_source: Mutex::new(
+                read_to_string("./dist/index.js").expect("Failed to load the resource."),
+            ),
+        });
+
         App::new()
+            .app_data(state.clone())
             .service(Files::new("/styles", "./dist/styles/").show_files_listing())
             .service(Files::new("/images", "./dist/images/").show_files_listing())
             .service(Files::new("/scripts", "./dist/scripts/").show_files_listing())
@@ -32,7 +35,7 @@ pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
 }
 
 #[get("*")]
-async fn index(req: HttpRequest, data: web::Data<Mutex<AppData>>) -> impl Responder {
+async fn index(req: HttpRequest, data: web::Data<AppState>) -> impl Responder {
     let props = format!(
         r##"{{
             "location": "{}",
@@ -41,11 +44,13 @@ async fn index(req: HttpRequest, data: web::Data<Mutex<AppData>>) -> impl Respon
         req.uri()
     );
 
-    let response_body = Ssr::render_to_string(&data.lock().unwrap().js_source, "SSR", Some(&props));
+    let source = data.js_source.lock().unwrap();
+
+    //let source = read_to_string("./dist/index.js").expect("Failed to load the resource.");
+
+    let response_body = Ssr::render_to_string(&source, "SSR", Some(&props));
 
     let body = once(ok::<_, Error>(web::Bytes::from(response_body)));
-
-    //let body = once(ok::<_, Error>(web::Bytes::from("Hello world".to_owned())));
 
     HttpResponse::build(StatusCode::OK)
         .content_type("text/html; charset=utf-8")
