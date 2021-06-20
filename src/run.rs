@@ -22,7 +22,7 @@ pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
         });
 
         App::new()
-            .app_data(state.clone())
+            .app_data(state)
             .service(Files::new("/styles", "./dist/styles/").show_files_listing())
             .service(Files::new("/images", "./dist/images/").show_files_listing())
             .service(Files::new("/scripts", "./dist/scripts/").show_files_listing())
