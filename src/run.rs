@@ -7,8 +7,17 @@ use futures::{future::ok, stream::once};
 use ssr_rs::Ssr;
 use std::fs::read_to_string;
 use std::net::TcpListener;
+use std::sync::Mutex;
+
+struct AppData {
+    js_source: String,
+}
 
 pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
+    let _ = web::Data::new(Mutex::new(AppData {
+        js_source: read_to_string("./dist/index.js").expect("File not found"),
+    }));
+
     let server = HttpServer::new(move || {
         App::new()
             .service(Files::new("/styles", "./dist/styles/").show_files_listing())
@@ -23,22 +32,20 @@ pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
 }
 
 #[get("*")]
-async fn index(req: HttpRequest) -> impl Responder {
+async fn index(req: HttpRequest, data: web::Data<Mutex<AppData>>) -> impl Responder {
     let props = format!(
         r##"{{
-        "location": "{}",
-        "context": {{}}
-    }}"##,
+            "location": "{}",
+            "context": {{}}
+        }}"##,
         req.uri()
     );
 
-    let source = read_to_string("./dist/index.js").expect("File not found");
+    let response_body = Ssr::render_to_string(&data.lock().unwrap().js_source, "SSR", Some(&props));
 
-    let body = once(ok::<_, Error>(web::Bytes::from(Ssr::render_to_string(
-        &source,
-        "SSR",
-        Some(&props),
-    ))));
+    let body = once(ok::<_, Error>(web::Bytes::from(response_body)));
+
+    //let body = once(ok::<_, Error>(web::Bytes::from("Hello world".to_owned())));
 
     HttpResponse::build(StatusCode::OK)
         .content_type("text/html; charset=utf-8")

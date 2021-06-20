@@ -23,23 +23,23 @@ A basic test suite, a prettier formatter, an eslint checker and a Github Action 
 ## Frontend dev mode
 
 ```shell
-$ cd client/
+cd client/
 
-$ npm i && npm run start
+npm i && npm run start
 ```
 
 ## Build and run
 
 ```shell
-$ cd client/
+cd client/
 
-$ npm i && npm run build
+npm i && npm run build
 
-$ cd ..
+cd ..
 
-$ cargo build --release
+cargo build --release
 
-$ cargo run --release
+cargo run --release
 ```
 
 ## Deploy
